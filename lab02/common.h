@@ -11,7 +11,7 @@ enum ShapeType {
     Diamond      = 0x01<<4,
     Text         = 0x01<<5,
     Img          = 0x01<<6,
-
+    grap         =0x01<<7,
     TypeMask     = 0x0f
 };
 }

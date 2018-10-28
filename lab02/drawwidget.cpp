@@ -2,7 +2,7 @@
 #include <QMouseEvent>
 #include <QPen>
 #include <QMessageBox>
-
+#include <QDateTime>
 
 DrawWidget::DrawWidget(QWidget *parent) : QWidget(parent)
 {
@@ -105,7 +105,27 @@ void DrawWidget::resizeEvent (QResizeEvent *event)
    }
     QWidget::resizeEvent(event);
 }
+void DrawWidget::imAge()
+{
+    QImage iconImage;
+       iconImage.load(":/user");
+       QPixmap *newPix = new QPixmap(size());
+       *newPix=QPixmap(*this->pix);
+       *pix = QPixmap::fromImage(iconImage.scaledToWidth(pix->size().width()*0.5 , Qt::FastTransformation));
+       QPainter p(newPix);                             //正中添加图片,宽度为当前窗口的0.5倍,高度自动缩放
+       p.drawPixmap (QPoint((width()-pix->width())/2,(height()-pix->width())/2), *pix);
+       delete pix;     //删除原pix
+       pix = newPix;
+       update();
+}
 
+void DrawWidget::save()
+{
+    QDateTime current_date_time =QDateTime::currentDateTime();     //当前时间作为文件名(避免覆盖)
+       QString currentDate =current_date_time.toString("yyyy-MM-dd_hh-mm-ss");
+       QString fileName=tr("D:/Project/lab02.jpg").arg(currentDate);
+       this->pix->save(fileName);         //保存文件
+}
 
 void DrawWidget::clear ()
 {

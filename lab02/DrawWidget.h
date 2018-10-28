@@ -36,6 +36,8 @@ public slots:
     void setWidth(int);
     void setColor(QColor);
     void clear();
+    void imAge();
+    void save();
 
 private :
     QPixmap *pix;

@@ -73,14 +73,10 @@ void MainWindow::createToolBar ()
        clearBtn->setToolTip(tr("清除当前画板"));
 
        connect (clearBtn, &QToolButton::clicked, centerFrame, &CenterFrame::clearPaint);
-       pixmap.fill (BACKGROUND_COLOR);
-       QPainter painter(&pixmap);
-       QImage image(":/user");
-       QRect targetRect(0,0,20,20);
-       QRect sourceRect=image.rect();
-       painter.drawImage(targetRect,image,sourceRect);
-       imgBtn=new QToolButton();
-       imgBtn->setIcon(QIcon(pixmap));
+       saveBtn = new QToolButton;
+       saveBtn->setText (tr("保存"));
+       saveBtn->setToolTip(tr("baocun"));
+       connect (saveBtn, &QToolButton::clicked, centerFrame, &CenterFrame::on_btnsaveClicked);
 
       // 向工具栏上添加各个控件
       toolBar->addWidget (styleLabel);
@@ -90,7 +86,7 @@ void MainWindow::createToolBar ()
       toolBar->addWidget (colorBtn);
       toolBar->addSeparator();
       toolBar->addWidget (clearBtn);
-      toolBar->addWidget(imgBtn);
+      toolBar->addWidget(saveBtn);
   }
 
   void MainWindow::penStyleChangged (int index)

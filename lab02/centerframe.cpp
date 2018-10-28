@@ -41,7 +41,7 @@ void CenterFrame::createUserCommandArea()
     pen.setStyle(Qt::DotLine);
     painter.setRenderHint(QPainter::Antialiasing);
     painter.setPen(pen);
-
+//图片
     p.fill (BACKGROUND_COLOR);//tupian
     btnImg = new QPushButton(group);
      btnImg->setToolTip("图片");
@@ -53,6 +53,8 @@ void CenterFrame::createUserCommandArea()
     QRect sourceRect=image.rect();
     painter.drawImage(targetRect,image,sourceRect);
     btnImg->setIcon(QIcon(p));
+    connect(btnImg,&QPushButton::clicked,
+            this,&CenterFrame::on_btnImgClicked);
 
     // 矩形按钮
     btnRect = new QPushButton(group);
@@ -110,6 +112,8 @@ void CenterFrame::createUserCommandArea()
     btnTriangle->setIcon (QIcon(p));
     connect(btnTriangle,&QPushButton::clicked,
             this,&CenterFrame::on_btnTriangleClicked);
+
+
 
     // 文本按钮
     btnText = new QPushButton(group);
@@ -281,12 +285,21 @@ void CenterFrame::setPenColor(QColor color)
     drawWidget->setColor(color);
 }
 
+
 void CenterFrame::clearPaint()
 {
     drawWidget->clear();
 }
 
+void CenterFrame::on_btnImgClicked()
+{
+    drawWidget->imAge();
+}
 
+void CenterFrame::on_btnsaveClicked()
+{
+    drawWidget->save();
+}
  void CenterFrame::on_btnRectClicked()
 {
     if(btnRect->isChecked()){
@@ -341,15 +354,7 @@ void CenterFrame::on_btnTextClicked()
     }
 }
 
-void CenterFrame::on_btnImgClicked()
-{
-    if(btnImg->isChecked()){
-        drawWidget->setShapeType(ST::Img);
-        updateButtonStatus();
-    }else{
-        drawWidget->setShapeType(ST::None);
-    }
-}
+
 
 void CenterFrame::on_btnDiamondClicked()
 {

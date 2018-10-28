@@ -33,6 +33,8 @@ public slots:
     void setPenWidth(int width=1);
     void setPenColor(QColor color);
     void clearPaint();
+    void on_btnImgClicked();
+    void on_btnsaveClicked();
 
 
 protected slots:
@@ -41,8 +43,9 @@ protected slots:
     void on_btnLineClicked();
     void on_btnTriangleClicked();
     void on_btnTextClicked();
-    void on_btnImgClicked();
+
     void on_btnDiamondClicked();
+    void on_btnGraphClicked();
     void on_edtTextEdited(const QString &text);
 
 
@@ -60,6 +63,7 @@ private:
     QPushButton* btnText;
     QPushButton* btnDiamond;
     QLineEdit* edtText;
+    QPushButton* btnGraph;
 
 
 };
