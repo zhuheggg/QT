@@ -40,3 +40,6 @@ FORMS += \
 
 RESOURCES += \
     lab02.qrc
+
+DISTFILES += \
+    RES/t01862bf710f25e3c98.jpg

@@ -107,15 +107,21 @@ void DrawWidget::resizeEvent (QResizeEvent *event)
 }
 void DrawWidget::imAge()
 {
-    QImage iconImage;
-       iconImage.load(":/user");
-       QPixmap *newPix = new QPixmap(size());
-       *newPix=QPixmap(*this->pix);
-       *pix = QPixmap::fromImage(iconImage.scaledToWidth(pix->size().width()*0.5 , Qt::FastTransformation));
-       QPainter p(newPix);
-       p.drawPixmap (QPoint((width()-pix->width())/2,(height()-pix->width())/2), *pix);
-       delete pix;
-       pix = newPix;
+    QImage image(":/user");
+    QRect targetRect(150,50,300,300);
+
+    QRect sourceRect=image.rect();
+    QPainter painter(pix);
+    painter.drawImage(targetRect,image,sourceRect);
+    //    QImage iconImage;
+//       iconImage.load(":/user");
+//       QPixmap *newPix = new QPixmap(size());
+//       *newPix=QPixmap(*this->pix);
+//       *pix = QPixmap::fromImage(iconImage.scaledToWidth(pix->size().width()*0.5 , Qt::FastTransformation));
+//       QPainter p(newPix);
+//       p.drawPixmap (QPoint((width()-pix->width())/2,(height()-pix->width())/2), *pix);
+//       delete pix;
+//       pix = newPix;
        update();
 }
 
