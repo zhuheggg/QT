@@ -112,18 +112,16 @@ void DrawWidget::imAge()
        QPixmap *newPix = new QPixmap(size());
        *newPix=QPixmap(*this->pix);
        *pix = QPixmap::fromImage(iconImage.scaledToWidth(pix->size().width()*0.5 , Qt::FastTransformation));
-       QPainter p(newPix);                             //正中添加图片,宽度为当前窗口的0.5倍,高度自动缩放
+       QPainter p(newPix);
        p.drawPixmap (QPoint((width()-pix->width())/2,(height()-pix->width())/2), *pix);
-       delete pix;     //删除原pix
+       delete pix;
        pix = newPix;
        update();
 }
 
 void DrawWidget::save()
 {
-    QDateTime current_date_time =QDateTime::currentDateTime();
-       QString currentDate =current_date_time.toString("aaaa-bb-cc_dd-ee-ff");
-       QString fileName=tr("D:/Project/lab02.jpg").arg(currentDate);
+        QString fileName=tr("D:/Project/lab02.jpg");
        this->pix->save(fileName);
 }
 
