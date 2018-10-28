@@ -121,10 +121,10 @@ void DrawWidget::imAge()
 
 void DrawWidget::save()
 {
-    QDateTime current_date_time =QDateTime::currentDateTime();     //当前时间作为文件名(避免覆盖)
-       QString currentDate =current_date_time.toString("yyyy-MM-dd_hh-mm-ss");
+    QDateTime current_date_time =QDateTime::currentDateTime();
+       QString currentDate =current_date_time.toString("aaaa-bb-cc_dd-ee-ff");
        QString fileName=tr("D:/Project/lab02.jpg").arg(currentDate);
-       this->pix->save(fileName);         //保存文件
+       this->pix->save(fileName);
 }
 
 void DrawWidget::clear ()
